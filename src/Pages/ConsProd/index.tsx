@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text, View, Image, ImageBackground } from "react-
 import { getProd } from '../../Services/ExampleAPI';
 
 export default function ConsProd({ navigation }: any) {
-    const [prd, setPrd] = useState(Object);
+    const [prd, setPrd] = useState();
 
     const Image = { uri: "https://reactjs.org/logo-og.png" };
 
@@ -12,30 +12,31 @@ export default function ConsProd({ navigation }: any) {
         getProd().then((items) => setPrd(items));
     }, [])
 
-    return (
+    if (prd != null){
+        return (
 
 
-        <View style={styles.container}>
-            
-                <View >
-                    <FlatList
-                        numColumns={2}
-                        data={prd}
-                        keyExtractor={(product) => product.id.toString()}
-                        renderItem={({ item, index }) => (
-                            <View style={styles.card}>
-                                <Text>{item.name}</Text>
-                                <Text>Fabricante: {item.factory.name}</Text>
-                                <View>
-                                    <Text>Unitário: R${item.price.toFixed(2).replace('.', ',')} </Text>
+            <View style={styles.container}>
+                        <FlatList
+                            numColumns={2}
+                            data={prd}
+                            keyExtractor={(product) => product.id.toString()}
+                            renderItem={({ item, index }) => (
+                                <View style={styles.card}>
+                                    <Text>{item.name}</Text>
+                                    <Text>Fabricante: {item.factory.name}</Text>
+                                    <View>
+                                        <Text>Unitário: R${item.price.toFixed(2).replace('.', ',')} </Text>
+                                    </View>
+                                    <Text>Disponível: {item.amount}</Text>
                                 </View>
-                                <Text>Disponível: {item.amount}</Text>
-                            </View>
-                        )}
-                    />
-                </View>
-        </View>
-    );
+                            )}
+                        />
+            </View>
+        );
+    }else{
+        return(<Text>Nada a exibir por aqui</Text>);
+    }
 }
 ;
 const styles = StyleSheet.create({
@@ -44,20 +45,15 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 
-    componentes: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
     card: {
         backgroundColor: "lightgray",
-        padding: "20px",
-        borderradius: "10px",
-        border: "2px",
-        bordercolor: "black",
-        borderstyle: "solid",
-        marginLeft:"12px",
-        marginBottom: "20px"
+        padding: 20,
+        borderRadius: 10,
+        borderColor: "black",
+        borderStyle: "solid",
+        marginLeft:12,
+        marginBottom: 20,
+        marginTop: 50
     },
     image: {
         flex: 1,

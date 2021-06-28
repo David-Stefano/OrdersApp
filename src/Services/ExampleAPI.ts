@@ -13,7 +13,7 @@ export  async function Logar(login: string, password: string): Promise<any> {
     }
 }
 
-export async function getProd(): Promise<Prod[]> {
+export async function getProd() {
     try {
         const response = await axios.get('https://example-ecommerce.herokuapp.com/product/list');
         return response.data;

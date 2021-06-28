@@ -17,12 +17,11 @@ import {
 
 export default function Login() {
   const navigation = useNavigation();
-  localStorage.clear();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const image = { uri: "https://reactjs.org/logo-og.png" };
 
-  function NovoCadastro() {
+  function novoCadastro() {
     navigation.navigate('Cadastro');
   }
 
@@ -32,8 +31,6 @@ export default function Login() {
 
 
         if (result == null) {
-          localStorage.setItem('APITOKEN', result);
-          console.log(localStorage.getItem('APITOKEN'));
           Alert.alert(
             'Erro!',
             'Usuário ou senha inválidos.'
@@ -75,7 +72,7 @@ export default function Login() {
       <TouchableOpacity style={styles.loginBtn} onPress={() => auth(email, password)}>
         <Text >LOGIN</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.reg_button} onPress={() => NovoCadastro()}>
+      <TouchableOpacity onPress={() => novoCadastro()}>
         <Text style={styles.reg_button}>Novo cadastro</Text>
       </TouchableOpacity>
       </View>
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginTop: 40,
     color: "white",
-    size:"20"
+    fontSize: 20
   },
 
   loginBtn: {

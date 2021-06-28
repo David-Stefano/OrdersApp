@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { cadUsu } from '../../services/ExampleApi';
+import { cadUsu } from '../../Services/ExampleAPI';
 import User from '../../models/Usu';
 import { StatusBar } from "expo-status-bar";
 import NumericInput from 'react-native-numeric-input'
@@ -108,7 +108,7 @@ export default function cadUser() {
                     placeholder="Idade"
                     keyboardType = 'numeric'
                     placeholderTextColor="#003f5c"
-                    onChangeText={(age) => setAge(age)}
+                    onChangeText={(age) => setAge(parseInt(age))}
                 />
             </View>
             
